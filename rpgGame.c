@@ -1756,7 +1756,6 @@ break;
 							puts("The last thing you hear is a single gunfire...");
 							choice = 99;
 						}
-						choice = 99;
 					}
 					else if (choice == 2)
 					{
@@ -1765,78 +1764,408 @@ break;
 						choice = 99;
 					}
 					// PART 2
-					int gear1 = 0;
-					int gear2 = 0;
-					puts("You enter another room, nearly identical to the previous one.");
-					puts("There is a table with various items, clearly made for self-defense.");
-					puts("There is also another door at the other end of the room, emanating an ominous VIBE");
-					puts("You had best prepare yourself. On the table are: ");
-					puts("1. A large, heavy shield. (50\% damage reduction, speed penalty)");
-					puts("2. A smaller, more mobile buckler. (25\% damage reduction)");
-					puts("3. A magic wand, with an embedded red crystal. (enables fire magic)");
-					puts("4. A six-inch slim dagger (enables second action after attacking)");
-					puts("5. A poleaxe-like naginata (capable of area attacks)");
+					if (choice != 99) 
+					{
+						int gear2 = 0;
+						int gear1 = 0;
+						puts("You enter another room, nearly identical to the previous one.");
+						puts("There is a table with various items, clearly made for self-defense.");
+						puts("There is also another door at the other end of the room, emanating an ominous VIBE");
+						puts("You had best prepare yourself. On the table are: ");
+						puts("1. A large, heavy shield. (Passive damage reduction, speed penalty)");
+						puts("2. A magic wand, with an embedded red crystal. (enables fire magic)");
+						puts("3. A six-inch slim dagger (strong single target attacks)");
+						puts("4. A poleaxe-like naginata (capable of area attacks)");
 
-					while(gear1 < 1 || gear1 > 5)
-					{
-						puts("Seems like you can hold two of these five items. For your first item, you choose... (1 - 5)");
-						scanf("%d", &gear1);
-						if (gear1 < 1 || gear1 > 5)
+						while(gear1 < 1 || gear1 > 4)
 						{
-							puts("Invalid choice.");
+							puts("Seems like you can hold two of these five items. For your first item, you choose... (1 - 5)");
+							scanf("%d", &gear1);
+							if (gear1 < 1 || gear1 > 4)
+							{
+								puts("Invalid choice.");
+							}
 						}
-					}
-					while(gear2 < 1 || gear2 > 5)
-					{
-						puts("And for your second choice... (each combination is unique)");
-						scanf("%d", &gear2);
-						if (gear1 == gear2)
+						while(gear2 < 1 || gear2 > 4)
 						{
-							puts("You can't choose the same item twice!");
-							gear2 = 0;
+							puts("And for your second choice... (each combination is unique)");
+							scanf("%d", &gear2);
+							if (gear1 == gear2)
+							{
+								puts("You can't choose the same item twice!");
+								gear2 = 0;
+							}
 						}
-					}
-					int gearCombo = gear1 * 10 + gear2;
-					if (gearCombo == 12 || gearCombo == 21)
-					{
-						puts("Two shields? You'll make do somehow.");
-						puts("(Shield Showdown unlocked)");
-						gearCombo = 12;
-					}
-					else if (gearCombo == 13 || gearCombo == 31)
-					{
-						puts("Mage tank, an unorthodox yet versatile match.");
-						puts("(Self-Immolation unlocked)");
-						gearCombo = 13;
-					}
-					else if (gearCombo == 14 || gearCombo == 41)
-					{
-						puts("The weight of the shield is offset by the dagger.");
-						puts("(Counter-Parry unlocked)");
-						gearCombo = 14;
-					}
-					else if (gearCombo == 15 || gearCombo == 51)
-					{
-						puts("The combination of heavy gear gives you confidence.");
-						puts("(Steadfast Swing unlocked)");
-						gearCombo = 15;
-					}
-					else if (gearCombo == 23 || gearCombo == 32)
-					{
-						puts("You notice your buckler can sustain the flames from your wand.");
-						puts("(Flaming Boomerang unlocked)");
-						gearCombo = 23;
-					}
-					else if (gearCombo == 24 || gearCombo == 42)
-					{
-						puts("The combination of light gear somehow makes you feel even faster.");
-						puts("(Rapid Rushdown unlocked)");
-						gearCombo == 24;
-					}
-					else if (gearCombo == 25 || gearCombo == 52)
-					{
-					}
+						int gearCombo = gear1 * 10 + gear2;
+						if (gearCombo == 12 || gearCombo == 21)
+						{
+							puts("Mage tank, an unorthodox yet versatile match.");
+							puts("(Self-Immolation unlocked)");
+							gearCombo = 12;
+						}
+						else if (gearCombo == 13 || gearCombo == 31)
+						{
+							puts("The weight of the shield is offset by the dagger.");
+							puts("(Counter-Parry unlocked)");
+							gearCombo = 13;
+						}
+						else if (gearCombo == 14 || gearCombo == 41)
+						{
+							puts("The combination of heavy gear gives you confidence.");
+							puts("(Steadfast Swing unlocked)");
+							gearCombo = 14;
+						}
+						else if (gearCombo == 23 || gearCombo == 32)
+						{
+							puts("Ready to take on the one or the many.");
+							puts("(Blazing Flurry unlocked)");
+							gearCombo = 23;
+						}
+						else if (gearCombo == 24 || gearCombo == 42)
+						{
+							puts("Weapons of pure mayhem.");
+							puts("(Raging Whirlwind unlocked)");
+							gearCombo = 24;
+						}
+						else if (gearCombo == 34 || gearCombo == 43)
+						{
+							puts("Pure physical offense.");
+							puts("(Blade Storm unlocked)");
+							gearCombo = 34;
+						}
+						int rm13hp = 100;
+						int ghoul1hp = 30;
+						int ghoul2hp = 30;
+						int ghoul3hp = 30;
+						int ghoul4hp = 30;
+						int ghoulcount = 4;
+						int summonerhp = 200;
+						int rm13turncount = 1;
+						
+						int selfimmo = 0;
+						int counterparry = 0;
+						
+						int rm13cd = 0;
+						int ghoulcd = 1;
+						int summonercd = 3;
+						
+						int wepchoice = 0;
+						int enemychoice = 0;
+						int specialcd = 3;
+						
+						puts("You enter the next room.");
+						puts("A cloaked human figure stands alone in the middle of the room, eyes faintly glowing.");
+						puts("A dark energy swirls around it, and then bursts outwards, summoning four ghouls, armed with sharp claws");
+						puts("You ready your gear...");
+						
+						while(summonerhp >= 0 && rm13hp >= 0)
+						{
+							printf("\n --Turn %d-- \n", rm13turncount);
+							rm13cd--;
+							rm13turncount++;
+							summonercd--;
+							ghoulcd--;
+							
+							// HEALTH CHECK
+							if (rm13hp > 75)
+							{
+								puts("You feel healthy.");
+							}
+							else if (rm13hp <= 75 && rm13hp > 50)
+							{
+								puts("You feel alright.");
+							}
+							else if (rm13hp <= 50 && rm13hp > 25)
+							{
+								puts("You feel wounded.");
+							}
+							else if (rm13hp <= 25)
+							{
+								puts("You feel death nearing...");
+							}
+							
+							// ENEMY TURN
+							if (ghoulcd <= 0 && ghoulcount > 0)
+							{
+								ghoulcd = 1;
+								puts("The ghoul summoner commands the ghouls to strike!");
+								if (gearCombo >= 11 && gearCombo <= 14)
+								{
+									if (selfimmo == 1)
+									{
+										puts("The ghouls strike and are burnt to the ground in your flames!");
+										ghoul1hp = 0;
+										ghoul2hp = 0;
+										ghoul3hp = 0;
+										ghoul4hp = 0;
+										ghoulcount = 0;
+										selfimmo = 0;
+									}
+									if (counterparry == 1)
+									{
+										counterparry = 0;
+										puts("Ghoul damage countered!");
+										ghoul1hp -= 5;
+										ghoul2hp -= 5;
+										ghoul3hp -= 5;
+										ghoul4hp -= 5;
+										if (ghoul1hp <= 0)
+										{
+											ghoulcount--;
+										}
+										if (ghoul2hp <= 0)
+										{
+											ghoulcount--;
+										}
+										if (ghoul3hp <= 0)
+										{
+											ghoulcount--;
+										}
+										if (ghoul4hp <= 0)
+										{
+											ghoulcount--;
+										}
+									}
+									else 
+									{
+										rm13hp -= ghoulcount;
+										puts("Damage taken reduced by shield.");
+									}
+								}
+								else 
+								{
+									rm13hp -= (5 * ghoulcount);
+									puts("Damage taken!");
+								}
+							}
+							
+							if (summonercd <= 0 && ghoulcount <= 0)
+							{
+								puts("The ghoul summoner raises the dead ghouls once more, weaker this time.");
+								ghoul1hp = 15;
+								ghoul2hp = 15;
+								ghoul3hp = 15;
+								ghoul4hp = 15;
+								ghoulcount = 4;
+								summonercd = 3;
+							}
+								
+							
+							// YOUR TURN
+							if (rm13cd <= 0 && rm13hp > 0)
+							{
+								rm13cd = 1;
+								if (gearCombo >= 11 && gearCombo <= 14)
+								{
+									rm13cd++;
+								}
+								
+								if (specialcd != 0)
+								{
+								
+									specialcd--;
+									puts("\nReady a weapon.");
+									if (gear1 == 2 || gear2 == 2)
+									{
+										puts("2. Fire Wand");
+									}
+									if (gear1 == 3 || gear2 == 3)
+									{
+										puts("3. Dagger");
+									}
+									if (gear1 == 4 || gear2 == 4)
+									{
+										puts("4. Naginata");
+									}
+									scanf("%d", &wepchoice);
+									if(wepchoice != gear1 && wepchoice != gear2)
+									{
+										puts("You chose something you didn't have!");
+									}
+									
+									if(wepchoice == 3)
+									{
+										if (ghoulcount > 0)
+										{
+											puts("Stab a 1. ghoul or the 2. summoner?");
+											scanf("%d", &enemychoice);
+											if (enemychoice < 1 && enemychoice > 2)
+											{
+												puts("You selected a nonexistent target!");
+											}
+											else if (enemychoice == 1)
+											{
+												puts("You stab a ghoul down!");
+												ghoulcount--;
+											}
+											else if (enemychoice == 2)
+											{
+												puts("You take a stab at the summoner!");
+												summonerhp -= 30;
+											}
+											printf("%d ghouls remain.\n", ghoulcount);
+										}
+										else 
+										{
+											puts("You take a stab at the summoner!");
+											summonerhp -= 30;
+										}
+										
+									}
+									
+									if (wepchoice == 2)
+									{
+										if (ghoulcount > 0)
+										{
+											puts("Aim at 1. ghouls or the 2. summoner?");
+											scanf("%d", &enemychoice);
+											if (enemychoice < 1 && enemychoice > 2)
+											{
+												puts("You selected a nonexistent target!");
+											}
+											else if (enemychoice == 1)
+											{
+												puts("You burn a ghoul, and the summoner takes collateral!");
+												ghoulcount--;
+												summonerhp -= 15;
+											}
+											else if (enemychoice == 2)
+											{
+												puts("You burn the summoner, taking a ghoul as well!");
+												summonerhp -= 30;
+												ghoulcount--;
+											}
+											printf("%d ghouls remain.\n", ghoulcount);
+										}
+										else 
+										{
+											puts("You burn the summoner! Extra damage!");
+											summonerhp -= 45;
+										}
+									}
+										
+									if (wepchoice == 4)
+									{
+										if (ghoulcount > 0)
+										{
+											puts("You swing your naginata, damaging everything!");
+											summonerhp -= 15;
+											ghoul1hp -= 15;
+											ghoul2hp -= 15;
+											ghoul3hp -= 15;
+											ghoul4hp -= 15;
+											if (ghoul1hp <= 0)
+											{
+												ghoulcount--;
+											}
+											if (ghoul2hp <= 0)
+											{
+												ghoulcount--;
+											}
+											if (ghoul3hp <= 0)
+											{
+												ghoulcount--;
+											}
+											if (ghoul4hp <= 0)
+											{
+												ghoulcount--;
+											}
+											printf("%d ghouls remain.\n", ghoulcount);
+										}
+										else 
+										{
+											puts("You strike at the summoner!");
+											summonerhp -= 20;
+										}
+									}
+								}
 
+								else if (specialcd == 0)
+								{
+									puts("Your special is ready!");
+									specialcd += 4;
+									if (gearCombo == 12)
+									{
+										puts("SELF IMMOLATION");
+										puts("You surround yourself in flames!");
+										selfimmo = 1;
+									}
+									else if (gearCombo == 13)
+									{
+										puts("COUNTER PARRY");
+										puts("You prepare to counter incoming damage.");
+										counterparry = 1;
+									}
+									else if (gearCombo == 14)
+									{
+										puts("STEADFAST SWING");
+										puts("You strike everything in range!");
+										puts("Ghouls vanquished! Summoner took damage!");
+										ghoulcount = 0;
+										summonerhp -= 30;
+									}
+									else if (gearCombo == 23)
+									{
+										puts("BLAZING FURY");
+										puts("You strike 3 times consecutively!");
+										if (ghoulcount >= 3)
+										{
+											ghoulcount -= 3;
+											puts("3 ghouls vanquished!");
+										}
+										else if (ghoulcount == 2)
+										{
+											ghoulcount = 0;
+											puts("Ghouls vanquished! Summoner took damage!");
+											summonerhp -= 30;
+										}
+										else if (ghoulcount == 1)
+										{
+											ghoulcount = 0;
+											puts("Ghouls vanquished! Summoner took big damage!");
+											summonerhp -= 60;
+										}
+										else
+										{
+											puts("Summoner took massive damage!");
+											summonerhp -= 90;
+										}
+									}
+									else if (gearCombo == 24)
+									{
+										puts("RAGING WHIRLWIND");
+										puts("You swing around wildly, setting everything aflame!");
+										puts("Ghouls vanquished, summoner took damage!");
+										ghoulcount = 0;
+										summonerhp -= 30;
+									}
+									
+									else if (gearCombo == 34)
+									{
+										puts("BLADE STORM");
+										puts("Summoner takes extreme damage from a flurry of blade swings!");
+										summonerhp -= 100;
+									}
+								}
+								else
+								{
+									puts("Shield speed penalty active.");
+								}
+							}
+						}
+						if (rm13hp <= 0) 
+						{
+							puts("\n\nYou were struck down! \n\nDeath is only the beginning...\n");
+							choice = 99;
+						}
+						else if (summonerhp <= 0)
+						{
+							puts("Summoner vanquished! Any remaining ghouls disappear...");
+							puts("\n\nYou are victorious! \n\nVictory is only the beginning...\n");
+							choice = 99;
+						}
+							
+					}
 
 
 				}
